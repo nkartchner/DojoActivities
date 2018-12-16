@@ -1,0 +1,28 @@
+﻿@model IEnumerable<CBelt.Models.Participant>
+
+
+@foreach (var p in Model)
+{
+    <li>@p.User.firstName</li>
+}
+
+
+
+
+				$('.submit').click(function(){
+					if($('form').valid()) {
+
+						$.ajax({
+							url: '@Url.RouteUrl(new { action = "GetAnswer", controller = "Home" })',
+                            data: {Answer: '', Question: $('#Question').val()},
+                            type: 'POST',
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            success: function(resp) {
+                            openAlert(resp);
+                            }});
+                            }
+                            else {
+                            closeAlert();
+                            }
+                            });

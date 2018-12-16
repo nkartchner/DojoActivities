@@ -1,0 +1,45 @@
+﻿@model CBelt.Models.User
+
+<form asp-controller="Register" asp-action="ProcRegister" method="post" class="reg-form">
+<h1>Register</h1>
+        <section class="form-1">
+            @Html.ValidationMessageFor(m => m.firstName)
+            @Html.LabelFor(m => m.firstName)
+            @Html.TextBoxFor(m => m.firstName, new { @class = "form-control" })
+        </section>
+
+        <section class="form-2">
+            @Html.ValidationMessageFor(m => m.lastName)
+            @Html.LabelFor(m => m.lastName)
+            @Html.TextBoxFor(m => m.lastName, new { @class = "form-control" })
+        </section>
+
+        <section class="form-3">
+            @Html.ValidationMessageFor(m => m.email)
+            @Html.LabelFor(m => m.email)
+            @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+        </section>
+
+        <section class="form-4">
+            @Html.ValidationMessageFor(m => m.password)
+            @Html.LabelFor(m => m.password)
+            @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+        </section>
+
+        <section class="form-5">
+            @Html.ValidationMessageFor(m => m.confirm)
+            @Html.LabelFor(m => m.confirm)
+            @Html.PasswordFor(m => m.confirm, new { @class = "form-control" })
+        </section>
+
+    <button type="submit" class="btn btn-primary reg-btn">Register</button>
+
+</form>
+
+
+
+
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>

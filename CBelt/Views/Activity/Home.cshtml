@@ -1,0 +1,66 @@
+﻿@model CBelt.Models.HomeView
+<link rel="stylesheet" href="~/css/Home.css" />
+
+<main class="home-container">
+    <header class="home-hdr">
+        <h1 class="index_header">Dojo Activity Center</h1>
+        <span class="header_friend middle">Welcome @Model.LoggedIn.firstName!</span>
+        @Html.ActionLink("Log off", "Logout", "Login", new { @class = "logoff-link" })
+    </header>
+    @if (TempData["JoinErrorMessage"] != null)
+    {
+        <span class="field-validation-error join-error">@TempData["JoinErrorMessage"]</span>
+        TempData.Clear();
+    }
+
+    <section class="trail_table">
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Date and Time</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Event Coordinator</th>
+                    <th scope="col">Number of Participants</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var e in Model.events)
+                {
+                    <tr>
+                        <th scope="row"><a href="/activity/@e.EventId">@e.Title</a></th>
+                        <td>@e.Date.Date.ToString("dddd, MMMM d, yyyy") @@ @e.Date.ToString("hh:mm tt")</td>
+                        <td>@e.DurationToString()</td>
+                        <td>@e.CreatedBy</td>
+                        <td>@e.Participants.Count</td>
+
+                        <td>
+                            @if (Model.LoggedIn.UserId == e.UserId)
+                            {
+                                <a id="Delete" class="btn btn-danger action-button" href="/Delete/@Model.LoggedIn.UserId/@e.EventId">Delete</a>
+                            }
+                            else if (Model.LoggedIn.Participating.Any(ev => ev.EventId == e.EventId))
+                            {
+
+                                <a id="Un-join" class="btn btn-success action-warning" href="/Leave/@Model.LoggedIn.UserId/@e.EventId">Un-Join</a>
+                            }
+                            else if (!Model.LoggedIn.Participating.Any(ev => ev.EventId == e.EventId))
+                            {
+                                <a id="Join" class="btn btn-success action-button" href="/Join/@Model.LoggedIn.UserId/@e.EventId">Join</a>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </section>
+    <section class="add_trail_btn">
+        <a href="New" class="btn btn-primary">Create an Event!</a>
+    </section>
+</main>

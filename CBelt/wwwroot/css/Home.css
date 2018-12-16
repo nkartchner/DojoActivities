@@ -1,0 +1,145 @@
+﻿/************************************************ Index Page ************************************************/
+
+.home-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 3fr 1fr;
+    max-width: 970px;
+    min-height: 400px;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.home-hdr {
+    grid-row: 1;
+    grid-column: 1 / span 3;
+    margin: 0px 0px 0px 0px;
+}
+.index_header {
+    display: inline-block;
+    margin: 20px 0px 0px 0px;
+}
+.header_friend {
+    align-self: center;
+    margin: 0px 140px 0px 240px;
+    font-size: 20px;
+}
+.trail_table {
+    grid-row: 2;
+    grid-column: span 5;
+    overflow-y: auto;
+}
+
+
+.add_trail_btn {
+    grid-row: 3;
+    grid-column: 3;
+    align-self: center;
+    justify-self: center;
+}
+
+
+/************************************************ Details Page ************************************************/
+
+
+.trail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 970px;
+    height: 800px;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.left-side {
+    display: grid;
+    grid-column: 1;
+    grid-template-rows: 1fr 2fr 1fr 1fr 1fr;
+}
+
+.mailbox-h1 {
+    grid-row: 1;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    align-self: end;
+    justify-self: start;
+}
+
+.trail-description {
+    grid-row: 2;
+    padding: 10px;
+    grid-row: 2;
+}
+
+.left-side-p {
+    text-align: end;
+}
+
+.trail-length {
+    grid-row: 3;
+    padding: 10px;
+}
+
+    .trail-length > h3 {
+        margin: 10px 0px 10px 50px;
+    }
+
+.trail-elevation {
+    grid-row: 4;
+    padding: 10px;
+}
+
+    .trail-elevation > h3 {
+        margin: 10px 0px 10px 50px;
+    }
+
+
+.right-side {
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr 1fr 1fr;
+}
+
+    .right-side > a {
+        grid-row: 1;
+        align-self: end;
+        justify-self: end;
+    }
+
+#google-map {
+    width: 100%;
+    height: 100%;
+    grid-row: 2 / span 3;
+}
+
+.long-lat {
+    grid-row: 5;
+    padding: 15px;
+}
+
+
+/************************************************ New Page ************************************************/
+
+
+
+.go-home {
+    align-self: end;
+    justify-self: end;
+    grid-row: 1;
+    grid-column: 3;
+}
+
+.add-header {
+    align-self: end;
+    justify-self: start;
+    grid-column: 1 / span 3;
+    grid-row: 1;
+}
+
+
+.add-btn {
+    justify-self: end;
+    align-self: end;
+    grid-column: 3;
+    grid-row: 2;
+}

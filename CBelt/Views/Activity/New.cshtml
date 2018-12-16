@@ -1,0 +1,62 @@
+﻿@model CBelt.Models.Event
+
+<link rel="stylesheet" href="~/css/New.css" />
+
+<form asp-controller="Activity" asp-action="ProcEvent" method="post" id="new-container">
+    <header id="secondary">
+        <h1 class="index_header">Dojo Activity Center</h1>
+        <a href="Home" class="link-middle">Home</a>
+        <a asp-controller="Login" asp-action="Logout" class="link-end">Log Off</a>
+    </header>
+
+    <h2 class="inner-hdr">Create an Activity!</h2>
+
+    <section class = "form-1 form-group">
+        @Html.ValidationMessageFor(m => m.Title)
+        @Html.LabelFor(m => m.Title)
+        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+    </section>
+
+    <section class = "form-2 form-group">
+
+        @Html.ValidationMessageFor(m => m.Date)
+        @Html.LabelFor(m => m.Date)
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control", @type="date" })
+    </section>
+
+    <section class = "form-3 form-group">
+
+        @Html.ValidationMessageFor(m => m.Time)
+        @Html.LabelFor(m => m.Time)
+        @Html.TextBoxFor(m => m.Time, new { @class = "form-control", @type = "time" })
+
+    </section>
+     
+    <section class = "form-4 form-group">
+
+        @Html.ValidationMessageFor(m => m.Duration)
+        @Html.LabelFor(m => m.Duration)
+        @Html.TextBoxFor(m => m.Duration, new { @class = "form-control", @type = "number", @min="0" })
+
+    </section>
+    <section class = "form-s form-group">
+        <select name="durSpec" class="form-s form-control">
+            <option value="0">Days</option>
+            <option value="1">Hours</option>
+            <option value="2">Minutes</option>
+        </select>
+    </section>
+
+    <section class = "form-5 form-group">
+        @Html.ValidationMessageFor(m => m.Description)
+        @Html.LabelFor(m => m.Description, new { @class = "desc-label"})
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @id= "desc-text" })
+    </section>
+
+    <button type="submit" class="btn btn-primary new-form-btn">Create Activity</button>
+
+
+
+
+
+</form>

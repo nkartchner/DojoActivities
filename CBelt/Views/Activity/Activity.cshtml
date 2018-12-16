@@ -1,0 +1,58 @@
+﻿@model CBelt.Models.EventView
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+
+
+<link rel="stylesheet" href="~/css/Activity.css" />
+
+<main id="activity-container">
+
+    <header id="secondary">
+        <h1 class="index_header">Dojo Activity Center</h1>
+        <a href="/Home" class="link-middle">Home</a>
+        <a asp-controller="Login" asp-action="Logout" class="link-end">Log Off</a>
+    </header>
+
+    <h2 class="evt-name">Squit Gun Fight</h2>
+    @if (Model.User.UserId == Model.Event.UserId)
+    {
+        <a class="btn btn-success action-button" href="/Delete/@Model.Event.User.UserId/@Model.Event.EventId">Delete</a>
+
+    }
+    else if (Model.User.Participating.Where(ev => ev.EventId == Model.Event.EventId).Any())
+    {
+        <a class="btn btn-success action-button" href="/Leave/@Model.User.UserId/@Model.Event.EventId">Un-Join</a>
+    }
+    else if (!Model.User.Participating.Contains(new Participant { EventId = Model.Event.EventId }))
+    {
+        <a class="btn btn-success action-button" href="/Join/@Model.User.UserId/@Model.Event.EventId">Join</a>
+
+    }
+
+    <span class="evt-coord">Event Coordinator: @Model.Event.User.firstName</span>
+
+
+
+    <span class="desc-title">Description</span>
+    <p class="p-desc">
+        @Model.Event.Description
+    </p>
+
+
+
+
+    <span class="ppl">Participants:</span>
+    <ul class="ppl-list">
+
+    @foreach (var p in Model.Event.Participants)
+    {
+        <li>@p.User.firstName @p.User.lastName</li>
+    }
+    </ul>
+
+
+
+
+
+</main>

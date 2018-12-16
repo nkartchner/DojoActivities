@@ -8,7 +8,6 @@ using CBelt.Models;
 using Microsoft.AspNetCore.Http;
 using CBelt.Data;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace CBelt.Controllers
 {

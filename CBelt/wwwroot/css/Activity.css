@@ -1,7 +1,7 @@
 ﻿#activity-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 70px 0.2fr 1fr 1fr 3fr 2fr;
+    grid-template-rows: 70px 0.1fr 0.2fr 0.2fr 1fr 1fr;
     max-width: 970px;
     min-height: 600px;
     margin: 0px auto;
@@ -54,11 +54,11 @@
 .p-desc {
     grid-row: 5;
     grid-column: 1 / 4;
-    height: 200px;
+    min-height: 100px;
     display: inline-block;
     width: 870px;
     margin: 40px 0px 0px 40px;
-    font-size:13px;
+    font-size: 13px;
 }
 .ppl {
     font-size: 20px;

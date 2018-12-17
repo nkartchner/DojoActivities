@@ -60,7 +60,7 @@ namespace CBelt.Models
             {
                 if (this.Duration.Hours > 1)
                 {
-                    return String.Format("{0:d}Hours" , this.Duration.Hours);
+                    return String.Format("{0:d} Hours" , this.Duration.Hours);
                 }
                 return String.Format("{0:d} Hour", this.Duration.Hours);
             }

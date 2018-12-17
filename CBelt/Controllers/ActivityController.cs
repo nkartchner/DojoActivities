@@ -28,7 +28,6 @@ namespace CBelt.Controllers
             {
                 DateTime startTimeA = e.Event.Date;
                 DateTime endTimeA = e.Event.Date + e.Event.Duration;
-                //if(max(PotentialEvent.Date, user.Participating) < min(end1, end2))
                 if (startTimeA < endTimeB && startTimeB < endTimeA)
                     return true;
             }
@@ -123,11 +122,7 @@ namespace CBelt.Controllers
 
             if (ModelState.IsValid)
             {
-                if(DateTime.Compare(evt.Date, DateTime.Now) < 0)
-                {
-                    ModelState.AddModelError("Date", "Date must be held in the future!");
-                    return View("New", evt);
-                }
+                evt.Date += evt.Time;
                 
                 switch (Int32.Parse(durSpec))
                 {
@@ -148,8 +143,12 @@ namespace CBelt.Controllers
                                     .FirstOrDefault(u => u.UserId == SessionUserId);
 
 
+                if (DateTime.Compare(evt.Date, DateTime.Now) < 0)
+                {
+                    ModelState.AddModelError("Date", "Date must be held in the future!");
+                    return View("New", evt);
+                }
 
-                evt.Date += evt.Time;
                 evt.UserId = (int)SessionUserId;
                 evt.CreatedBy = modelUser.firstName;
                 dbContext.events.Add(evt);
@@ -175,16 +174,6 @@ namespace CBelt.Controllers
                                     .Include(u => u.Participating)
                                     .ThenInclude(p => p.Event)
                                     .FirstOrDefault(u => u.UserId == userId);
-
-            foreach(var part in CurrentUser.Participating)
-            {
-                Console.WriteLine($"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Event Date: {part.Event.Title} $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                Console.WriteLine($"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Event Date: {part.Event.Date} $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                Console.WriteLine($"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Event Raw Duration: {part.Event.Duration} $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                Console.WriteLine($"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Event String Duration {part.Event.DurationToString()} $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-                Console.WriteLine($"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Event Date-Duration: {part.Event.Date.Subtract(part.Event.Duration) } $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-            }
-
 
             if (HasOverlap(EventToJoin, CurrentUser))
             {

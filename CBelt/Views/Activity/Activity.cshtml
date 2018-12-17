@@ -14,10 +14,10 @@
         <a asp-controller="Login" asp-action="Logout" class="link-end">Log Off</a>
     </header>
 
-    <h2 class="evt-name">Squit Gun Fight</h2>
+    <h2 class="evt-name">@Model.Event.Title</h2>
     @if (Model.User.UserId == Model.Event.UserId)
     {
-        <a class="btn btn-success action-button" href="/Delete/@Model.Event.User.UserId/@Model.Event.EventId">Delete</a>
+        <a class="btn btn-danger action-button" href="/Delete/@Model.Event.User.UserId/@Model.Event.EventId">Delete</a>
 
     }
     else if (Model.User.Participating.Where(ev => ev.EventId == Model.Event.EventId).Any())

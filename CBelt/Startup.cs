@@ -40,10 +40,6 @@ namespace CBelt
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
 
 
 
